@@ -1,0 +1,26 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_image
+param	string	filename	""		 %read{2,2} %write{2147483647,-1}
+param	float	s	0		 %read{2,2} %write{0,0} %derivs
+param	float	t	0		 %read{2,2} %write{1,1} %derivs
+param	string	swrap	"periodic"		 %read{2,2} %write{2147483647,-1}
+param	string	twrap	"periodic"		 %read{2,2} %write{2147483647,-1}
+oparam	color	Cout	0 0 0		 %read{2147483647,-1} %write{2,2}
+global	float	u	 %read{0,0} %write{2147483647,-1} %derivs
+global	float	v	 %read{1,1} %write{2147483647,-1} %derivs
+const	string	$const1	"swrap"		 %read{2,2} %write{2147483647,-1}
+const	string	$const2	"twrap"		 %read{2,2} %write{2147483647,-1}
+code s
+# as_image.osl:32
+#     float         s = u,
+	assign		s u 	%filename{"as_image.osl"} %line{32} %argrw{"wr"}
+code t
+# as_image.osl:33
+#     float         t = v,
+	assign		t v 	%filename{"as_image.osl"} %line{33} %argrw{"wr"}
+code ___main___
+# as_image.osl:38
+#     Cout = texture(filename, s, t, "swrap", swrap, "twrap", twrap);
+	texture		Cout filename s t $const1 swrap $const2 twrap 	%filename{"as_image.osl"} %line{38} %argrw{"wrrrrrrr"} %argderivs{2,3}
+	end

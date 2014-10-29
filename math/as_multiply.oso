@@ -1,0 +1,11 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_multiply
+param	float	float1	0		 %read{0,0} %write{2147483647,-1}
+param	float	factor	1		 %read{0,0} %write{2147483647,-1}
+oparam	float	float_out	0		 %read{2147483647,-1} %write{0,0}
+code ___main___
+# as_float_multiply.osl:34
+#     float_out = float1 * factor;
+	mul		float_out float1 factor 	%filename{"as_float_multiply.osl"} %line{34} %argrw{"wrr"}
+	end

@@ -1,0 +1,21 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_color_split
+param	color	color1	0 0 0		 %read{0,2} %write{2147483647,-1}
+oparam	float	r	0		 %read{2147483647,-1} %write{0,0}
+oparam	float	g	0		 %read{2147483647,-1} %write{1,1}
+oparam	float	b	0		 %read{2147483647,-1} %write{2,2}
+const	int	$const1	0		 %read{0,0} %write{2147483647,-1}
+const	int	$const2	1		 %read{1,1} %write{2147483647,-1}
+const	int	$const3	2		 %read{2,2} %write{2147483647,-1}
+code ___main___
+# as_color_split.osl:35
+#     r = color1[0];
+	compref		r color1 $const1 	%filename{"as_color_split.osl"} %line{35} %argrw{"wrr"}
+# as_color_split.osl:36
+#     g = color1[1];
+	compref		g color1 $const2 	%line{36} %argrw{"wrr"}
+# as_color_split.osl:37
+#     b = color1[2];
+	compref		b color1 $const3 	%line{37} %argrw{"wrr"}
+	end

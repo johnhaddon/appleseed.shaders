@@ -1,0 +1,12 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_color_build
+param	float	r	0		 %read{0,0} %write{2147483647,-1}
+param	float	g	0		 %read{0,0} %write{2147483647,-1}
+param	float	b	0		 %read{0,0} %write{2147483647,-1}
+oparam	color	color_out	0 0 0		 %read{2147483647,-1} %write{0,0}
+code ___main___
+# as_color_build.osl:35
+#     color_out = color(r, g, b);
+	color		color_out r g b 	%filename{"as_color_build.osl"} %line{35} %argrw{"wrrr"}
+	end

@@ -1,0 +1,12 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_vector_mix
+param	vector	vector1	0 0 0		 %read{0,0} %write{2147483647,-1}
+param	vector	vector2	0 0 0		 %read{0,0} %write{2147483647,-1}
+param	float	factor	0.5		 %read{0,0} %write{2147483647,-1}
+oparam	vector	vector_out	0 0 0		 %read{2147483647,-1} %write{0,0}
+code ___main___
+# as_vector_mix.osl:35
+#     vector_out = mix(vector1, vector2, factor);
+	mix		vector_out vector1 vector2 factor 	%filename{"as_vector_mix.osl"} %line{35} %argrw{"wrrr"}
+	end
