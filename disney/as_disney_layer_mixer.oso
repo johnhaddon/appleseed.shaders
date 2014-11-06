@@ -1,0 +1,72 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_disney_layer_mixer
+param	color	base_color1	0.5 0.5 0.5		 %read{0,0} %write{2147483647,-1}
+param	float	subsurface1	0		 %read{1,1} %write{2147483647,-1}
+param	float	metallic1	0		 %read{2,2} %write{2147483647,-1}
+param	float	specular1	0.5		 %read{3,3} %write{2147483647,-1}
+param	float	specular_tint1	0		 %read{4,4} %write{2147483647,-1}
+param	float	anisotropic1	0		 %read{5,5} %write{2147483647,-1}
+param	float	roughness1	0.5		 %read{6,6} %write{2147483647,-1}
+param	float	sheen1	0		 %read{7,7} %write{2147483647,-1}
+param	float	sheen_tint1	0.5		 %read{8,8} %write{2147483647,-1}
+param	float	clearcoat1	0		 %read{9,9} %write{2147483647,-1}
+param	float	clearcoat_gloss1	1		 %read{10,10} %write{2147483647,-1}
+param	color	base_color2	0.5 0.5 0.5		 %read{0,0} %write{2147483647,-1}
+param	float	subsurface2	0		 %read{1,1} %write{2147483647,-1}
+param	float	metallic2	0		 %read{2,2} %write{2147483647,-1}
+param	float	specular2	0.5		 %read{3,3} %write{2147483647,-1}
+param	float	specular_tint2	0		 %read{4,4} %write{2147483647,-1}
+param	float	anisotropic2	0		 %read{5,5} %write{2147483647,-1}
+param	float	roughness2	0.5		 %read{6,6} %write{2147483647,-1}
+param	float	sheen2	0		 %read{7,7} %write{2147483647,-1}
+param	float	sheen_tint2	0.5		 %read{8,8} %write{2147483647,-1}
+param	float	clearcoat2	0		 %read{9,9} %write{2147483647,-1}
+param	float	clearcoat_gloss2	1		 %read{10,10} %write{2147483647,-1}
+param	float	mix_factor	0.5		 %read{0,10} %write{2147483647,-1}
+oparam	color	base_color	0.5 0.5 0.5		 %read{2147483647,-1} %write{0,0}
+oparam	float	subsurface	0		 %read{2147483647,-1} %write{1,1}
+oparam	float	metallic	0		 %read{2147483647,-1} %write{2,2}
+oparam	float	specular	0.5		 %read{2147483647,-1} %write{3,3}
+oparam	float	specular_tint	0		 %read{2147483647,-1} %write{4,4}
+oparam	float	anisotropic	0		 %read{2147483647,-1} %write{5,5}
+oparam	float	roughness	0.5		 %read{2147483647,-1} %write{6,6}
+oparam	float	sheen	0		 %read{2147483647,-1} %write{7,7}
+oparam	float	sheen_tint	0.5		 %read{2147483647,-1} %write{8,8}
+oparam	float	clearcoat	0		 %read{2147483647,-1} %write{9,9}
+oparam	float	clearcoat_gloss	1		 %read{2147483647,-1} %write{10,10}
+code ___main___
+# as_disney_layer_mixer.osl:68
+#     base_color = mix(base_color1, base_color2, mix_factor);
+	mix		base_color base_color1 base_color2 mix_factor 	%filename{"as_disney_layer_mixer.osl"} %line{68} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:69
+#     subsurface = mix(subsurface1, subsurface2, mix_factor);
+	mix		subsurface subsurface1 subsurface2 mix_factor 	%line{69} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:70
+#     metallic = mix(metallic1, metallic2, mix_factor);
+	mix		metallic metallic1 metallic2 mix_factor 	%line{70} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:71
+#     specular = mix(specular1, specular2, mix_factor);
+	mix		specular specular1 specular2 mix_factor 	%line{71} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:72
+#     specular_tint = mix(specular_tint1, specular_tint2, mix_factor);
+	mix		specular_tint specular_tint1 specular_tint2 mix_factor 	%line{72} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:73
+#     anisotropic = mix(anisotropic1, anisotropic2, mix_factor);
+	mix		anisotropic anisotropic1 anisotropic2 mix_factor 	%line{73} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:74
+#     roughness = mix(roughness1, roughness2, mix_factor);
+	mix		roughness roughness1 roughness2 mix_factor 	%line{74} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:75
+#     sheen = mix(sheen1, sheen2, mix_factor);
+	mix		sheen sheen1 sheen2 mix_factor 	%line{75} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:76
+#     sheen_tint = mix(sheen_tint1, sheen_tint2, mix_factor);
+	mix		sheen_tint sheen_tint1 sheen_tint2 mix_factor 	%line{76} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:77
+#     clearcoat = mix(clearcoat1, clearcoat2, mix_factor);
+	mix		clearcoat clearcoat1 clearcoat2 mix_factor 	%line{77} %argrw{"wrrr"}
+# as_disney_layer_mixer.osl:78
+#     clearcoat_gloss = mix(clearcoat_gloss1, clearcoat_gloss2, mix_factor);
+	mix		clearcoat_gloss clearcoat_gloss1 clearcoat_gloss2 mix_factor 	%line{78} %argrw{"wrrr"}
+	end

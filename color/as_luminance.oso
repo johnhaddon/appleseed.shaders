@@ -1,13 +1,13 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_luminance
-param	color	color1	0 0 0		 %read{0,0} %write{2147483647,-1}
+param	color	color_in	0 0 0		 %read{0,0} %write{2147483647,-1}
 oparam	float	float_out	0		 %read{1,1} %write{0,0}
 oparam	color	color_out	0 0 0		 %read{2147483647,-1} %write{1,1}
 code ___main___
 # as_luminance.osl:34
-#     float_out = luminance(color1);
-	luminance	float_out color1 	%filename{"as_luminance.osl"} %line{34} %argrw{"wr"}
+#     float_out = luminance(color_in);
+	luminance	float_out color_in 	%filename{"as_luminance.osl"} %line{34} %argrw{"wr"}
 # as_luminance.osl:35
 #     color_out = color(float_out);
 	assign		color_out float_out 	%line{35} %argrw{"wr"}

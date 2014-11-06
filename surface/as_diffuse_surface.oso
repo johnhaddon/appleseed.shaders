@@ -2,8 +2,8 @@ OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_diffuse_surface
 param	normal	Nn	0 0 0		 %read{1,1} %write{0,0}
-param	float	kd	1		 %read{2,2} %write{2147483647,-1}
-param	color	col	0.80000001 0.80000001 0.80000001		 %read{2,2} %write{2147483647,-1}
+param	float	kd	0.80000001		 %read{2,2} %write{2147483647,-1}
+param	color	col	1 1 1		 %read{2,2} %write{2147483647,-1}
 param	float	roughness	0		 %read{1,1} %write{2147483647,-1}
 oparam	closure color	BSDF			 %read{2147483647,-1} %write{3,3}
 global	normal	N	 %read{0,0} %write{2147483647,-1}

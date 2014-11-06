@@ -26,11 +26,32 @@
 // THE SOFTWARE.
 //
 
-shader as_luminance(
-    color         color_in = 0,
-    output float  float_out = 0,
-    output color  color_out = 0)
+shader as_glass_surface(
+    normal                  Nn = N,
+    vector                  T = dPdu,
+    color					col = 1,
+    string					distribution = "specular",
+    float 					xroughness = 0.015,
+    float 					yroughness = 0.015,
+    float 					ior = 1.5,
+    output closure color	BRDF = 0)
 {
-    float_out = luminance(color_in);
-    color_out = color(float_out);
+    float eta = ior;
+
+    if (!backfacing())
+    {
+        eta = 1.0 / eta;
+    }
+
+    float Kr, Kt;
+    fresnel(I, Nn, eta, Kr, Kt);
+
+    if (distribution == "specular")
+        BRDF = col * Kr * reflection(Nn) + Kt * refraction(N, eta);
+    else
+    {
+        BRDF = col * 
+            (Kr * microfacet(distribution, Nn, T, xroughness, yroughness, eta, 0) +
+             Kt * microfacet(distribution, Nn, T, xroughness, yroughness, eta, 1));
+    }
 }

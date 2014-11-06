@@ -1,0 +1,33 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_disney_surface
+param	normal	Nn	0 0 0		 %read{2,2} %write{0,0}
+param	vector	T	0 0 0		 %read{2,2} %write{1,1}
+param	color	base_color	0.5 0.5 0.5		 %read{2,2} %write{2147483647,-1}
+param	float	subsurface	0		 %read{2,2} %write{2147483647,-1}
+param	float	metallic	0		 %read{2,2} %write{2147483647,-1}
+param	float	specular	0.5		 %read{2,2} %write{2147483647,-1}
+param	float	specular_tint	0		 %read{2,2} %write{2147483647,-1}
+param	float	anisotropic	0		 %read{2,2} %write{2147483647,-1}
+param	float	roughness	0.5		 %read{2,2} %write{2147483647,-1}
+param	float	sheen	0		 %read{2,2} %write{2147483647,-1}
+param	float	sheen_tint	0.5		 %read{2,2} %write{2147483647,-1}
+param	float	clearcoat	0		 %read{2,2} %write{2147483647,-1}
+param	float	clearcoat_gloss	1		 %read{2,2} %write{2147483647,-1}
+oparam	closure color	BSDF			 %read{2147483647,-1} %write{2,2}
+global	normal	N	 %read{0,0} %write{2147483647,-1}
+global	vector	dPdu	 %read{1,1} %write{2147483647,-1}
+const	string	$const1	"as_disney"		 %read{2,2} %write{2147483647,-1}
+code Nn
+# as_disney_surface.osl:30
+#     normal                 Nn = N,
+	assign		Nn N 	%filename{"as_disney_surface.osl"} %line{30} %argrw{"wr"}
+code T
+# as_disney_surface.osl:31
+#     vector                 T = dPdu,
+	assign		T dPdu 	%filename{"as_disney_surface.osl"} %line{31} %argrw{"wr"}
+code ___main___
+# as_disney_surface.osl:58
+#         clearcoat_gloss);
+	closure		BSDF $const1 Nn T base_color subsurface metallic specular specular_tint anisotropic roughness sheen sheen_tint clearcoat clearcoat_gloss 	%filename{"as_disney_surface.osl"} %line{58} %argrw{"wrrrrrrrrrrrrrr"}
+	end

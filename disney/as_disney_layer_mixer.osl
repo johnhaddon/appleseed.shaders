@@ -1,0 +1,79 @@
+
+//
+// This source file is part of appleseed.
+// Visit http://appleseedhq.net/ for additional information and resources.
+//
+// This software is released under the MIT license.
+//
+// Copyright (c) 2014 The masked shader writer, The appleseedhq Organization
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
+shader as_disney_layer_mixer(
+    color          base_color1 = 0.5,
+    float          subsurface1 = 0,
+    float          metallic1 = 0,
+    float          specular1 = 0.5,
+    float          specular_tint1 = 0,
+    float          anisotropic1 = 0,
+    float          roughness1 = 0.5,
+    float          sheen1 = 0,
+    float          sheen_tint1 = 0.5,
+    float          clearcoat1 = 0,
+    float          clearcoat_gloss1 = 1,
+
+    color          base_color2 = 0.5,
+    float          subsurface2 = 0,
+    float          metallic2 = 0,
+    float          specular2 = 0.5,
+    float          specular_tint2 = 0,
+    float          anisotropic2 = 0,
+    float          roughness2 = 0.5,
+    float          sheen2 = 0,
+    float          sheen_tint2 = 0.5,
+    float          clearcoat2 = 0,
+    float          clearcoat_gloss2 = 1,
+
+    float          mix_factor = 0.5,
+
+    output color   base_color = 0.5,
+    output float   subsurface = 0,
+    output float   metallic = 0,
+    output float   specular = 0.5,
+    output float   specular_tint = 0,
+    output float   anisotropic = 0,
+    output float   roughness = 0.5,
+    output float   sheen = 0,
+    output float   sheen_tint = 0.5,
+    output float   clearcoat = 0,
+    output float   clearcoat_gloss = 1)
+{
+    base_color = mix(base_color1, base_color2, mix_factor);
+    subsurface = mix(subsurface1, subsurface2, mix_factor);
+    metallic = mix(metallic1, metallic2, mix_factor);
+    specular = mix(specular1, specular2, mix_factor);
+    specular_tint = mix(specular_tint1, specular_tint2, mix_factor);
+    anisotropic = mix(anisotropic1, anisotropic2, mix_factor);
+    roughness = mix(roughness1, roughness2, mix_factor);
+    sheen = mix(sheen1, sheen2, mix_factor);
+    sheen_tint = mix(sheen_tint1, sheen_tint2, mix_factor);
+    clearcoat = mix(clearcoat1, clearcoat2, mix_factor);
+    clearcoat_gloss = mix(clearcoat_gloss1, clearcoat_gloss2, mix_factor);
+}

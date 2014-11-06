@@ -26,11 +26,18 @@
 // THE SOFTWARE.
 //
 
-shader as_luminance(
-    color         color_in = 0,
-    output float  float_out = 0,
-    output color  color_out = 0)
+shader as_glossy_surface(
+    normal                  Nn = N,
+    vector                  T = dPdu,
+    float                   ks = 1,
+    color					col = 1,
+    string					distribution = "specular",
+    float 					xroughness = 0.015,
+    float 					yroughness = 0.015,
+    output closure color	BRDF = 0)
 {
-    float_out = luminance(color_in);
-    color_out = color(float_out);
+    if (distribution == "specular")
+        BRDF = ks * col * reflection(Nn);
+    else
+        BRDF = ks * col * microfacet(distribution, Nn, T, xroughness, yroughness, 1, 0);
 }

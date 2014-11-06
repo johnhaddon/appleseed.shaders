@@ -26,11 +26,34 @@
 // THE SOFTWARE.
 //
 
-shader as_luminance(
-    color         color_in = 0,
-    output float  float_out = 0,
-    output color  color_out = 0)
+shader as_disney_surface(
+    normal                 Nn = N,
+    vector                 T = dPdu,
+    color                  base_color = 0.5,
+    float                  subsurface = 0,
+    float                  metallic = 0,
+    float                  specular = 0.5,
+    float                  specular_tint = 0,
+    float                  anisotropic = 0,
+    float                  roughness = 0.5,
+    float                  sheen = 0,
+    float                  sheen_tint = 0.5,
+    float                  clearcoat = 0,
+    float                  clearcoat_gloss = 1,
+    output closure color   BSDF = 0)
 {
-    float_out = luminance(color_in);
-    color_out = color(float_out);
+    BSDF = as_disney(
+        Nn,
+        T,
+        base_color,
+        subsurface,
+        metallic,
+        specular,
+        specular_tint,
+        anisotropic,
+        roughness,
+        sheen,
+        sheen_tint,
+        clearcoat,
+        clearcoat_gloss);
 }

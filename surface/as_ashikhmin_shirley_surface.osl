@@ -26,11 +26,16 @@
 // THE SOFTWARE.
 //
 
-shader as_luminance(
-    color         color_in = 0,
-    output float  float_out = 0,
-    output color  color_out = 0)
+shader as_ashikhmin_shirley_surface(
+    normal                  Nn = N,
+    vector                  T = dPdu,
+    float                   kd = 0.7,
+    color                   diffuse_col = 1,
+    float                   ks = 0.3,
+    color					specular_col = 1,
+    float 					xexponent = 1000,
+    float 					yexponent = 1000,
+    output closure color	BRDF = 0)
 {
-    float_out = luminance(color_in);
-    color_out = color(float_out);
+    BRDF = as_ashikhmin_shirley(Nn, T, kd, diffuse_col, ks, specular_col, xexponent, yexponent);
 }

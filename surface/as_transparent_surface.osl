@@ -26,11 +26,10 @@
 // THE SOFTWARE.
 //
 
-shader as_luminance(
-    color         color_in = 0,
-    output float  float_out = 0,
-    output color  color_out = 0)
+shader as_transparent_surface(
+    float                 kt = 1.0,
+    color                 transp = 1.0,
+    output closure color  BSDF = 0)
 {
-    float_out = luminance(color_in);
-    color_out = color(float_out);
+    BSDF = kt * transp * transparent();
 }
