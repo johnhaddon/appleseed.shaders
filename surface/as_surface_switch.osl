@@ -26,10 +26,14 @@
 // THE SOFTWARE.
 //
 
-shader as_float_multiply(
-    float         float1 = 0,
-    float         factor = 1,
-    output float  float_out = 0)
+shader as_surface_switch(
+    closure color         BSDF1 = 0,
+    closure color         BSDF2 = 0,
+    int                   cond = 1,
+    output closure color  BSDF = 0)
 {
-    float_out = float1 * factor;
+    if (cond)
+        BSDF = BSDF1;
+    else
+        BSDF = BSDF2;
 }

@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
-shader as_multiply
+shader as_float_multiply
 param	float	float1	0		 %read{0,0} %write{2147483647,-1}
 param	float	factor	1		 %read{0,0} %write{2147483647,-1}
 oparam	float	float_out	0		 %read{2147483647,-1} %write{0,0}

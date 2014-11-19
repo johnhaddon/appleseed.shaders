@@ -26,16 +26,15 @@
 // THE SOFTWARE.
 //
 
-shader as_ashikhmin_shirley_surface(
-    normal                  Nn = N,
-    vector                  T = dPdu,
-    float                   kd = 0.7,
-    color                   diffuse_col = 1,
-    float                   ks = 0.3,
-    color					specular_col = 1,
-    float 					xexponent = 1000,
-    float 					yexponent = 1000,
-    output closure color	BRDF = 0)
+shader as_raytype(
+    output int is_camera = raytype("camera"),
+    output int is_light = raytype("light"),
+    output int is_shadow = raytype("shadow"),
+    output int is_transparency = raytype("transparency"),
+    output int is_shadow_or_transp = is_shadow || is_transparency,
+    output int is_probe = raytype("probe"),
+    output int is_diffuse = raytype("diffuse"),
+    output int is_specular = raytype("specular"),
+    output int is_glossy = raytype("glossy"))
 {
-    BRDF = as_ashikhmin_shirley(Nn, T, kd, diffuse_col, ks, specular_col, xexponent, yexponent);
 }
