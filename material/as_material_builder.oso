@@ -1,10 +1,10 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
-surface as_material
+surface as_material_builder
 param	closure color	BSDF			 %read{0,0} %write{2147483647,-1}
 global	closure color	Ci	 %read{2147483647,-1} %write{0,0}
 code ___main___
-# as_material.osl:32
+# as_material_builder.osl:32
 #     Ci = BSDF;
-	assign		Ci BSDF 	%filename{"as_material.osl"} %line{32} %argrw{"wr"}
+	assign		Ci BSDF 	%filename{"as_material_builder.osl"} %line{32} %argrw{"wr"}
 	end

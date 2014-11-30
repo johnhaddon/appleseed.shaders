@@ -27,10 +27,10 @@
 //
 
 shader as_fresnel(
-    normal       Nn = N,
+    normal       Norman = N,
     float        ior = 1.5,
-    output float kr = 0,
-    output float kt = 0)
+    output float fresnel_reflect = 0,
+    output float fresnel_refract = 0)
 {
     float eta = ior;
 
@@ -39,5 +39,5 @@ shader as_fresnel(
         eta = 1.0 / eta;
     }
 
-    fresnel(I, Nn, eta, kr, kt);
+    fresnel(I, Nn, eta, fresnel_reflect, fresnel_refract);
 }

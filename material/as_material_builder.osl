@@ -26,7 +26,8 @@
 // THE SOFTWARE.
 //
 
-#ifndef APPLESEED_ANISOTROPY_H
-#define APPLESEED_ANISOTROPY_H
-
-#endif
+surface as_material_builder(
+    closure color BSDF = 0)
+{
+    Ci = BSDF;
+}

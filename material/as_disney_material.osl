@@ -26,9 +26,9 @@
 // THE SOFTWARE.
 //
 
-shader as_disney_surface(
-    normal                 Nn = N,
-    vector                 T = dPdu,
+surface as_disney_material(
+    normal                 Nornal = N,
+    vector                 Tangent = dPdu,
     color                  base_color = 0.5,
     float                  subsurface = 0,
     float                  metallic = 0,
@@ -39,12 +39,11 @@ shader as_disney_surface(
     float                  sheen = 0,
     float                  sheen_tint = 0.5,
     float                  clearcoat = 0,
-    float                  clearcoat_gloss = 1,
-    output closure color   BSDF = 0)
+    float                  clearcoat_gloss = 1)
 {
-    BSDF = as_disney(
-        Nn,
-        T,
+    Ci = as_disney(
+        Normal,
+        Tangent,
         base_color,
         subsurface,
         metallic,

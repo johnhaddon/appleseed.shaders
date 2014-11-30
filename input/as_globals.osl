@@ -27,10 +27,10 @@
 //
 
 shader as_globals(
-    output point     Pp = P,
-    output normal    Nn = N,
-    output vector    Tt = dPdu,
-    output float     s = u,
-    output float     t = v)
+    output point     Point = P,
+    output normal    Normal = N,
+    output vector    Tangent = dPdu,
+    output float     U = u,
+    output float     V = v)
 {
 }

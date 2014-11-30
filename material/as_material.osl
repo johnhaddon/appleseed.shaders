@@ -26,7 +26,7 @@
 // THE SOFTWARE.
 //
 
-surface as_material(
+surface as_material_builder(
     closure color BSDF = 0)
 {
     Ci = BSDF;

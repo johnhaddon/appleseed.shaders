@@ -27,9 +27,9 @@
 //
 
 shader as_diffuse_surface(
-    normal                Nn = N,
-    float                 kd = 0.8,
-    color                 col = 1.0,
+    normal                Normal = N,
+    float                 diffuse = 0.8,
+    color                 Color = 1.0,
     float                 roughness = 0.0,
     output closure color  BSDF = 0)
 {
