@@ -26,9 +26,11 @@
 // THE SOFTWARE.
 //
 
-shader as_wavelength(
-    float         wavelength = 400,
-    output color  color_out = 0)
+shader as_wavelength
+(
+    float Wavelength = 400,
+    output color ColorOut = 0
+)
 {
-    color_out = wavelength_color(wavelength);
+    ColorOut = wavelength_color(Wavelength);
 }

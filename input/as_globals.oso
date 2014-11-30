@@ -1,35 +1,35 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_globals
-oparam	point	Pp	0 0 0		 %read{2147483647,-1} %write{0,0}
-oparam	normal	Nn	0 0 0		 %read{2147483647,-1} %write{1,1}
-oparam	vector	Tt	0 0 0		 %read{2147483647,-1} %write{2,2}
-oparam	float	s	0		 %read{2147483647,-1} %write{3,3}
-oparam	float	t	0		 %read{2147483647,-1} %write{4,4}
+oparam	point	Point	0 0 0		 %read{2147483647,-1} %write{0,0}
+oparam	vector	Normal	0 0 0		 %read{2147483647,-1} %write{1,1}
+oparam	vector	Tangent	0 0 0		 %read{2147483647,-1} %write{2,2}
+oparam	float	U	0		 %read{2147483647,-1} %write{3,3}
+oparam	float	V	0		 %read{2147483647,-1} %write{4,4}
 global	point	P	 %read{0,0} %write{2147483647,-1}
 global	normal	N	 %read{1,1} %write{2147483647,-1}
 global	float	u	 %read{3,3} %write{2147483647,-1}
 global	float	v	 %read{4,4} %write{2147483647,-1}
 global	vector	dPdu	 %read{2,2} %write{2147483647,-1}
-code Pp
-# as_globals.osl:30
-#     output point     Pp = P,
-	assign		Pp P 	%filename{"as_globals.osl"} %line{30} %argrw{"wr"}
-code Nn
+code Point
 # as_globals.osl:31
-#     output normal    Nn = N,
-	assign		Nn N 	%filename{"as_globals.osl"} %line{31} %argrw{"wr"}
-code Tt
+#     output point Point = P,
+	assign		Point P 	%filename{"as_globals.osl"} %line{31} %argrw{"wr"}
+code Normal
 # as_globals.osl:32
-#     output vector    Tt = dPdu,
-	assign		Tt dPdu 	%filename{"as_globals.osl"} %line{32} %argrw{"wr"}
-code s
+#     output vector Normal = N,
+	assign		Normal N 	%filename{"as_globals.osl"} %line{32} %argrw{"wr"}
+code Tangent
 # as_globals.osl:33
-#     output float     s = u,
-	assign		s u 	%filename{"as_globals.osl"} %line{33} %argrw{"wr"}
-code t
+#     output vector Tangent = dPdu,
+	assign		Tangent dPdu 	%filename{"as_globals.osl"} %line{33} %argrw{"wr"}
+code U
 # as_globals.osl:34
-#     output float     t = v)
-	assign		t v 	%filename{"as_globals.osl"} %line{34} %argrw{"wr"}
+#     output float U = u,
+	assign		U u 	%filename{"as_globals.osl"} %line{34} %argrw{"wr"}
+code V
+# as_globals.osl:36
+# )
+	assign		V v 	%filename{"as_globals.osl"} %line{36} %argrw{"wr"}
 code ___main___
 	end

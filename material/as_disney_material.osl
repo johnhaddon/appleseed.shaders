@@ -26,33 +26,35 @@
 // THE SOFTWARE.
 //
 
-surface as_disney_material(
-    normal                 Nornal = N,
-    vector                 Tangent = dPdu,
-    color                  base_color = 0.5,
-    float                  subsurface = 0,
-    float                  metallic = 0,
-    float                  specular = 0.5,
-    float                  specular_tint = 0,
-    float                  anisotropic = 0,
-    float                  roughness = 0.5,
-    float                  sheen = 0,
-    float                  sheen_tint = 0.5,
-    float                  clearcoat = 0,
-    float                  clearcoat_gloss = 1)
+surface as_disney_material
+(
+    vector Normal = N,
+    vector Tangent = dPdu,
+    color BaseColor = 0.5,
+    float Subsurface = 0,
+    float Metallic = 0,
+    float Specular = 0.5,
+    float SpecularTint = 0,
+    float Anisotropic = 0,
+    float Roughness = 0.5,
+    float Sheen = 0,
+    float SheenTint = 0.5,
+    float Clearcoat = 0,
+    float ClearcoatGloss = 1
+)
 {
     Ci = as_disney(
         Normal,
         Tangent,
-        base_color,
-        subsurface,
-        metallic,
-        specular,
-        specular_tint,
-        anisotropic,
-        roughness,
-        sheen,
-        sheen_tint,
-        clearcoat,
-        clearcoat_gloss);
+        BaseColor,
+        Subsurface,
+        Metallic,
+        Specular,
+        SpecularTint,
+        Anisotropic,
+        Roughness,
+        Sheen,
+        SheenTint,
+        Clearcoat,
+        ClearcoatGloss);
 }

@@ -26,10 +26,12 @@
 // THE SOFTWARE.
 //
 
-shader as_surface_add(
-    closure color         BSDF1 = 0,
-    closure color         BSDF2 = 0,
-    output closure color  BSDF = 0)
+shader as_surface_add
+(
+    closure color BSDF1 = 0,
+    closure color BSDF2 = 0,
+    output closure color BSDF = 0
+)
 {
     BSDF = BSDF1 + BSDF2;
 }

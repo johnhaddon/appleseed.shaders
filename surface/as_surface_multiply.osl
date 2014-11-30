@@ -26,11 +26,13 @@
 // THE SOFTWARE.
 //
 
-shader as_surface_multiply(
-    closure color         BSDF1 = 0,
-    float                 k = 1,
-    color                 col = 1,
-    output closure color  BSDF = 0)
+shader as_surface_multiply
+(
+    closure color BSDF1 = 0,
+    float Factor = 1,
+    color Color = 1,
+    output closure color BSDF = 0
+)
 {
-    BSDF = k * col * BSDF1;
+    BSDF = Factor * Color * BSDF1;
 }

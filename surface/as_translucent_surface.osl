@@ -26,11 +26,13 @@
 // THE SOFTWARE.
 //
 
-shader as_translucent_surface(
-    normal                Nn = N,
-    float                 kd = 1.0,
-    color                 col = 0.8,
-    output closure color  BSDF = 0)
+shader as_translucent_surface
+(
+    vector Normal = N,
+    float Diffuse = 1.0,
+    color Color = 0.8,
+    output closure color BSDF = 0
+)
 {
-    BSDF = kd * col * translucent(Nn);
+    BSDF = Diffuse * Color * translucent(Normal);
 }

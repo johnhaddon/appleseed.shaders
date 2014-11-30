@@ -26,10 +26,12 @@
 // THE SOFTWARE.
 //
 
-shader as_transparent_surface(
-    float                 kt = 1.0,
-    color                 transp = 1.0,
-    output closure color  BSDF = 0)
+shader as_transparent_surface
+(
+    float Transparency = 1.0,
+    color Color = 1.0,
+    output closure color BSDF = 0
+)
 {
-    BSDF = kt * transp * transparent();
+    BSDF = Transparency * Color * transparent();
 }

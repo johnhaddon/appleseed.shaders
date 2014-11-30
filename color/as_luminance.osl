@@ -26,9 +26,11 @@
 // THE SOFTWARE.
 //
 
-shader as_luminance(
-    color         color_in = 0,
-    output float  float_out = 0)
+shader as_luminance
+(
+    color Color = 0,
+    output float FloatOut = 0
+)
 {
-    float_out = luminance(color_in);
+    FloatOut = luminance(Color);
 }

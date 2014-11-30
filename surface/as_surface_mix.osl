@@ -26,11 +26,13 @@
 // THE SOFTWARE.
 //
 
-shader as_surface_mix(
-    closure color         BSDF1 = 0,
-    closure color         BSDF2 = 0,
-    float                 factor = 0.5,
-    output closure color  BSDF = 0)
+shader as_surface_mix
+(
+    closure color BSDF1 = 0,
+    closure color BSDF2 = 0,
+    float Factor = 0.5,
+    output closure color BSDF = 0
+)
 {
-    BSDF = factor * BSDF1 + (1.0 - factor) * BSDF2;
+    BSDF = Factor * BSDF1 + (1.0 - Factor) * BSDF2;
 }

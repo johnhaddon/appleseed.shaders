@@ -26,10 +26,12 @@
 // THE SOFTWARE.
 //
 
-shader as_emission_surface(
-    float                 ke = 1.0,
-    color                 col = 1.0,
-    output closure color  BSDF = 0)
+shader as_emission_surface
+(
+    float Emission = 1.0,
+    color Color = 1.0,
+    output closure color BSDF = 0
+)
 {
-    BSDF = ke * col * emission();
+    BSDF = Emission * Color * emission();
 }

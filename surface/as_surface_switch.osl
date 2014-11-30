@@ -26,13 +26,15 @@
 // THE SOFTWARE.
 //
 
-shader as_surface_switch(
-    closure color         BSDF1 = 0,
-    closure color         BSDF2 = 0,
-    int                   cond = 1,
-    output closure color  BSDF = 0)
+shader as_surface_switch
+(
+    closure color BSDF1 = 0,
+    closure color BSDF2 = 0,
+    int Cond = 1,
+    output closure color BSDF = 0
+)
 {
-    if (cond)
+    if (Cond)
         BSDF = BSDF1;
     else
         BSDF = BSDF2;

@@ -2,13 +2,13 @@ OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_surface_multiply
 param	closure color	BSDF1			 %read{1,1} %write{2147483647,-1}
-param	float	k	1		 %read{0,0} %write{2147483647,-1}
-param	color	col	1 1 1		 %read{0,0} %write{2147483647,-1}
+param	float	Factor	1		 %read{0,0} %write{2147483647,-1}
+param	color	Color	1 1 1		 %read{0,0} %write{2147483647,-1}
 oparam	closure color	BSDF			 %read{2147483647,-1} %write{1,1}
 temp	color	$tmp1	 %read{1,1} %write{0,0}
 code ___main___
-# as_surface_multiply.osl:35
-#     BSDF = k * col * BSDF1;
-	mul		$tmp1 k col 	%filename{"as_surface_multiply.osl"} %line{35} %argrw{"wrr"}
+# as_surface_multiply.osl:37
+#     BSDF = Factor * Color * BSDF1;
+	mul		$tmp1 Factor Color 	%filename{"as_surface_multiply.osl"} %line{37} %argrw{"wrr"}
 	mul		BSDF BSDF1 $tmp1 	%argrw{"wrr"}
 	end

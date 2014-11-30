@@ -26,15 +26,17 @@
 // THE SOFTWARE.
 //
 
-shader as_input(
-    float         float1 = 0,
-    vector        vector1 = 0,
-    color         color1 = 0,
-    output float  float_out = 0,
-    output vector vector_out = 0,
-    output color  color_out = 0)
+shader as_input
+(
+    float Float = 0,
+    vector Vector = 0,
+    color  Color = 0,
+    output float FloatOut = 0,
+    output vector VectorOut = 0,
+    output color ColorOut = 0
+)
 {
-    float_out = float1;
-    vector_out = vector1;
-    color_out = color1;
+    FloatOut = Float;
+    VectorOut = Vector;
+    ColorOut = Color;
 }

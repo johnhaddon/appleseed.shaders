@@ -26,15 +26,17 @@
 // THE SOFTWARE.
 //
 
-shader as_raytype(
-    output int is_camera = raytype("camera"),
-    output int is_light = raytype("light"),
-    output int is_shadow = raytype("shadow"),
-    output int is_transparency = raytype("transparency"),
-    output int is_shadow_or_transp = is_shadow || is_transparency,
-    output int is_probe = raytype("probe"),
-    output int is_diffuse = raytype("diffuse"),
-    output int is_specular = raytype("specular"),
-    output int is_glossy = raytype("glossy"))
+shader as_raytype
+(
+    output int IsCamera = raytype("camera"),
+    output int IsLight = raytype("light"),
+    output int IsShadow = raytype("shadow"),
+    output int IsTransparency = raytype("transparency"),
+    output int IsShadow_or_transp = IsShadow || IsTransparency,
+    output int IsProbe = raytype("probe"),
+    output int IsDiffuse = raytype("diffuse"),
+    output int IsSpecular = raytype("specular"),
+    output int IsGlossy = raytype("glossy")
+)
 {
 }

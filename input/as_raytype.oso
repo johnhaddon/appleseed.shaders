@@ -1,15 +1,15 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_raytype
-oparam	int	is_camera	0		 %read{2147483647,-1} %write{0,0}
-oparam	int	is_light	0		 %read{2147483647,-1} %write{1,1}
-oparam	int	is_shadow	0		 %read{4,4} %write{2,2}
-oparam	int	is_transparency	0		 %read{6,6} %write{3,3}
-oparam	int	is_shadow_or_transp	0		 %read{2147483647,-1} %write{8,8}
-oparam	int	is_probe	0		 %read{2147483647,-1} %write{9,9}
-oparam	int	is_diffuse	0		 %read{2147483647,-1} %write{10,10}
-oparam	int	is_specular	0		 %read{2147483647,-1} %write{11,11}
-oparam	int	is_glossy	0		 %read{2147483647,-1} %write{12,12}
+oparam	int	IsCamera	0		 %read{2147483647,-1} %write{0,0}
+oparam	int	IsLight	0		 %read{2147483647,-1} %write{1,1}
+oparam	int	IsShadow	0		 %read{4,4} %write{2,2}
+oparam	int	IsTransparency	0		 %read{6,6} %write{3,3}
+oparam	int	IsShadow_or_transp	0		 %read{2147483647,-1} %write{8,8}
+oparam	int	IsProbe	0		 %read{2147483647,-1} %write{9,9}
+oparam	int	IsDiffuse	0		 %read{2147483647,-1} %write{10,10}
+oparam	int	IsSpecular	0		 %read{2147483647,-1} %write{11,11}
+oparam	int	IsGlossy	0		 %read{2147483647,-1} %write{12,12}
 const	string	$const1	"camera"		 %read{0,0} %write{2147483647,-1}
 const	string	$const2	"light"		 %read{1,1} %write{2147483647,-1}
 const	string	$const3	"shadow"		 %read{2,2} %write{2147483647,-1}
@@ -21,45 +21,45 @@ const	string	$const6	"probe"		 %read{9,9} %write{2147483647,-1}
 const	string	$const7	"diffuse"		 %read{10,10} %write{2147483647,-1}
 const	string	$const8	"specular"		 %read{11,11} %write{2147483647,-1}
 const	string	$const9	"glossy"		 %read{12,12} %write{2147483647,-1}
-code is_camera
-# as_raytype.osl:30
-#     output int is_camera = raytype("camera"),
-	raytype		is_camera $const1 	%filename{"as_raytype.osl"} %line{30} %argrw{"wr"}
-code is_light
+code IsCamera
 # as_raytype.osl:31
-#     output int is_light = raytype("light"),
-	raytype		is_light $const2 	%filename{"as_raytype.osl"} %line{31} %argrw{"wr"}
-code is_shadow
+#     output int IsCamera = raytype("camera"),
+	raytype		IsCamera $const1 	%filename{"as_raytype.osl"} %line{31} %argrw{"wr"}
+code IsLight
 # as_raytype.osl:32
-#     output int is_shadow = raytype("shadow"),
-	raytype		is_shadow $const3 	%filename{"as_raytype.osl"} %line{32} %argrw{"wr"}
-code is_transparency
+#     output int IsLight = raytype("light"),
+	raytype		IsLight $const2 	%filename{"as_raytype.osl"} %line{32} %argrw{"wr"}
+code IsShadow
 # as_raytype.osl:33
-#     output int is_transparency = raytype("transparency"),
-	raytype		is_transparency $const4 	%filename{"as_raytype.osl"} %line{33} %argrw{"wr"}
-code is_shadow_or_transp
+#     output int IsShadow = raytype("shadow"),
+	raytype		IsShadow $const3 	%filename{"as_raytype.osl"} %line{33} %argrw{"wr"}
+code IsTransparency
 # as_raytype.osl:34
-#     output int is_shadow_or_transp = is_shadow || is_transparency,
-	neq		$tmp1 is_shadow $const5 	%filename{"as_raytype.osl"} %line{34} %argrw{"wrr"}
-	if		$tmp1 6 8 	%argrw{"r"}
-	neq		$tmp2 is_transparency $const5 	%argrw{"wrr"}
-	assign		$tmp1 $tmp2 	%argrw{"wr"}
-	assign		is_shadow_or_transp $tmp1 	%argrw{"wr"}
-code is_probe
+#     output int IsTransparency = raytype("transparency"),
+	raytype		IsTransparency $const4 	%filename{"as_raytype.osl"} %line{34} %argrw{"wr"}
+code IsShadow_or_transp
 # as_raytype.osl:35
-#     output int is_probe = raytype("probe"),
-	raytype		is_probe $const6 	%filename{"as_raytype.osl"} %line{35} %argrw{"wr"}
-code is_diffuse
+#     output int IsShadow_or_transp = IsShadow || IsTransparency,
+	neq		$tmp1 IsShadow $const5 	%filename{"as_raytype.osl"} %line{35} %argrw{"wrr"}
+	if		$tmp1 6 8 	%argrw{"r"}
+	neq		$tmp2 IsTransparency $const5 	%argrw{"wrr"}
+	assign		$tmp1 $tmp2 	%argrw{"wr"}
+	assign		IsShadow_or_transp $tmp1 	%argrw{"wr"}
+code IsProbe
 # as_raytype.osl:36
-#     output int is_diffuse = raytype("diffuse"),
-	raytype		is_diffuse $const7 	%filename{"as_raytype.osl"} %line{36} %argrw{"wr"}
-code is_specular
+#     output int IsProbe = raytype("probe"),
+	raytype		IsProbe $const6 	%filename{"as_raytype.osl"} %line{36} %argrw{"wr"}
+code IsDiffuse
 # as_raytype.osl:37
-#     output int is_specular = raytype("specular"),
-	raytype		is_specular $const8 	%filename{"as_raytype.osl"} %line{37} %argrw{"wr"}
-code is_glossy
+#     output int IsDiffuse = raytype("diffuse"),
+	raytype		IsDiffuse $const7 	%filename{"as_raytype.osl"} %line{37} %argrw{"wr"}
+code IsSpecular
 # as_raytype.osl:38
-#     output int is_glossy = raytype("glossy"))
-	raytype		is_glossy $const9 	%filename{"as_raytype.osl"} %line{38} %argrw{"wr"}
+#     output int IsSpecular = raytype("specular"),
+	raytype		IsSpecular $const8 	%filename{"as_raytype.osl"} %line{38} %argrw{"wr"}
+code IsGlossy
+# as_raytype.osl:39
+#     output int IsGlossy = raytype("glossy")
+	raytype		IsGlossy $const9 	%filename{"as_raytype.osl"} %line{39} %argrw{"wr"}
 code ___main___
 	end

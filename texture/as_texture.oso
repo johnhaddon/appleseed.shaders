@@ -1,0 +1,26 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_texture
+param	string	Filename	""		 %read{2,2} %write{2147483647,-1}
+param	float	U	0		 %read{2,2} %write{0,0} %derivs
+param	float	V	0		 %read{2,2} %write{1,1} %derivs
+param	string	SWrap	"periodic"		 %read{2,2} %write{2147483647,-1}
+param	string	TWrap	"periodic"		 %read{2,2} %write{2147483647,-1}
+oparam	color	ColorOut	0 0 0		 %read{2147483647,-1} %write{2,2}
+global	float	u	 %read{0,0} %write{2147483647,-1} %derivs
+global	float	v	 %read{1,1} %write{2147483647,-1} %derivs
+const	string	$const1	"swrap"		 %read{2,2} %write{2147483647,-1}
+const	string	$const2	"twrap"		 %read{2,2} %write{2147483647,-1}
+code U
+# as_texture.osl:33
+#     float U = u,
+	assign		U u 	%filename{"as_texture.osl"} %line{33} %argrw{"wr"}
+code V
+# as_texture.osl:34
+#     float V = v,
+	assign		V v 	%filename{"as_texture.osl"} %line{34} %argrw{"wr"}
+code ___main___
+# as_texture.osl:40
+#     ColorOut = texture(Filename, U, V, "swrap", SWrap, "twrap", TWrap);
+	texture		ColorOut Filename U V $const1 SWrap $const2 TWrap 	%filename{"as_texture.osl"} %line{40} %argrw{"wrrrrrrr"} %argderivs{2,3}
+	end

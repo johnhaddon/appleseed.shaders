@@ -1,16 +1,16 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_transparent_surface
-param	float	kt	1		 %read{1,1} %write{2147483647,-1}
-param	color	transp	1 1 1		 %read{1,1} %write{2147483647,-1}
+param	float	Transparency	1		 %read{1,1} %write{2147483647,-1}
+param	color	Color	1 1 1		 %read{1,1} %write{2147483647,-1}
 oparam	closure color	BSDF			 %read{2147483647,-1} %write{2,2}
 temp	closure color	$tmp1	 %read{2,2} %write{0,0}
 const	string	$const1	"transparent"		 %read{0,0} %write{2147483647,-1}
 temp	color	$tmp2	 %read{2,2} %write{1,1}
 code ___main___
-# as_transparent_surface.osl:34
-#     BSDF = kt * transp * transparent();
-	closure		$tmp1 $const1 	%filename{"as_transparent_surface.osl"} %line{34} %argrw{"wr"}
-	mul		$tmp2 kt transp 	%argrw{"wrr"}
+# as_transparent_surface.osl:36
+#     BSDF = Transparency * Color * transparent();
+	closure		$tmp1 $const1 	%filename{"as_transparent_surface.osl"} %line{36} %argrw{"wr"}
+	mul		$tmp2 Transparency Color 	%argrw{"wrr"}
 	mul		BSDF $tmp1 $tmp2 	%argrw{"wrr"}
 	end

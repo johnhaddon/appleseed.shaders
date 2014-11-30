@@ -26,18 +26,35 @@
 // THE SOFTWARE.
 //
 
-shader as_glossy_surface(
-    normal                  Nn = N,
-    vector                  T = dPdu,
-    float                   ks = 1,
-    color					col = 1,
-    string					distribution = "specular",
-    float 					xalpha = 0.015,
-    float 					yalpha = 0.015,
-    output closure color	BRDF = 0)
+#include "appleseed/defaults.h"
+#include "appleseed/metadata.h"
+
+shader as_glossy_surface
+[[
+    string help = "Glossy surface shader"
+]]
+(
+    vector Normal = N,
+    vector Tangent = dPdu,
+    float Specular = 1
+    [[
+        string help = "Reflectivity",
+        APPLESEED_01_LIMIT_METADATA
+    ]],
+    color Color = 0.8,
+
+    string Distribution = APPLESEED_DEFAULT_MDF_DISTRIBUTION
+    [[
+        APPLESEED_MDF_DISTRIBUTION_METADATA
+    ]],
+
+    float RoughnessX = 0.015,
+    float RoughnessY = 0.015,
+    output closure color BRDF = 0
+)
 {
-    if (distribution == "specular")
-        BRDF = ks * col * reflection(Nn);
+    if (Distribution == "specular")
+        BRDF = Specular * Color * reflection(Normal);
     else
-        BRDF = ks * col * microfacet(distribution, Nn, T, xalpha, yalpha, 1, 0);
+        BRDF = Specular * Color * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, 1, 0);
 }

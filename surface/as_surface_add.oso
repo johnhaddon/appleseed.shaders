@@ -5,7 +5,7 @@ param	closure color	BSDF1			 %read{0,0} %write{2147483647,-1}
 param	closure color	BSDF2			 %read{0,0} %write{2147483647,-1}
 oparam	closure color	BSDF			 %read{2147483647,-1} %write{0,0}
 code ___main___
-# as_surface_add.osl:34
+# as_surface_add.osl:36
 #     BSDF = BSDF1 + BSDF2;
-	add		BSDF BSDF1 BSDF2 	%filename{"as_surface_add.osl"} %line{34} %argrw{"wrr"}
+	add		BSDF BSDF1 BSDF2 	%filename{"as_surface_add.osl"} %line{36} %argrw{"wrr"}
 	end

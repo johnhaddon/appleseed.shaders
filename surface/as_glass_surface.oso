@@ -1,16 +1,17 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_glass_surface
-param	normal	Nn	0 0 0		 %read{9,77} %write{0,0}
-param	vector	T	0 0 0		 %read{75,77} %write{1,1}
-param	color	col	1 1 1		 %read{70,80} %write{2147483647,-1}
-param	string	distribution	"specular"		 %read{67,77} %write{2147483647,-1}
-param	float	xroughness	0.015		 %read{75,77} %write{2147483647,-1}
-param	float	yroughness	0.015		 %read{75,77} %write{2147483647,-1}
-param	float	ior	1.5		 %read{2,2} %write{2147483647,-1}
-oparam	closure color	BRDF			 %read{2147483647,-1} %write{74,80}
+param	vector	Normal	0 0 0		 %read{9,78} %write{0,0}
+param	vector	Tangent	0 0 0		 %read{76,78} %write{1,1}
+param	float	Specular	1		%meta{string,help,"Reflectivity"} %meta{float,min,0} %meta{float,max,1}  %read{70,81} %write{2147483647,-1}
+param	color	Color	1 1 1		 %read{70,81} %write{2147483647,-1}
+param	string	Distribution	"specular"		%meta{string,help,"Microfacet distribution to use: Specular, Beckmann or GGX."} %meta{string,widget,"mapper"} %meta{string,options,"Specular:0|Beckmann:1|GGX:2"}  %read{67,78} %write{2147483647,-1}
+param	float	RoughnessX	0.015		 %read{76,78} %write{2147483647,-1}
+param	float	RoughnessY	0.015		 %read{76,78} %write{2147483647,-1}
+param	float	Ior	1.5		%meta{string,help,"Index of refraction"} %meta{float,min,1} %meta{float,max,20}  %read{2,2} %write{2147483647,-1}
+oparam	closure color	BRDF			 %read{2147483647,-1} %write{75,82}
 global	vector	I	 %read{9,57} %write{2147483647,-1}
-global	normal	N	 %read{0,72} %write{2147483647,-1}
+global	normal	N	 %read{0,73} %write{2147483647,-1}
 global	vector	dPdu	 %read{1,1} %write{2147483647,-1}
 local	float	___216_IdotN	 %read{50,58} %write{48,48}
 local	float	___216_k	 %read{54,59} %write{53,53}
@@ -20,12 +21,12 @@ local	float	___219_beta	 %read{31,39} %write{27,27}
 local	float	___219_F	 %read{35,43} %write{33,42}
 local	vector	___221_R	 %read{2147483647,-1} %write{17,17}
 local	vector	___221_T	 %read{2147483647,-1} %write{56,66}
-local	float	eta	 %read{6,77} %write{2,6}
-local	float	Kr	 %read{44,76} %write{43,64}
-local	float	Kt	 %read{73,78} %write{46,65}
+local	float	eta	 %read{6,78} %write{2,6}
+local	float	Kr	 %read{44,77} %write{43,64}
+local	float	Kt	 %read{74,79} %write{46,65}
 temp	int	$tmp1	 %read{4,4} %write{3,3}
 temp	int	$tmp2	 %read{5,5} %write{4,4}
-const	int	$const1	0		 %read{4,75} %write{2147483647,-1}
+const	int	$const1	0		 %read{4,76} %write{2147483647,-1}
 const	float	$const2	1		 %read{6,64} %write{2147483647,-1}
 const	string	$const3	"fresnel"		 %read{7,8} %write{2147483647,-1}
 temp	int	$tmp3	 %read{11,11} %write{10,10}
@@ -55,7 +56,7 @@ temp	float	$tmp21	 %read{41,41} %write{39,39}
 temp	float	$tmp22	 %read{45,45} %write{44,44}
 temp	float	$tmp23	 %read{46,46} %write{45,45}
 const	string	$const10	"refract"		 %read{47,47} %write{2147483647,-1}
-const	int	$const11	1		 %read{77,77} %write{2147483647,-1}
+const	int	$const11	1		 %read{78,78} %write{2147483647,-1}
 temp	float	$tmp24	 %read{52,52} %write{49,49}
 temp	float	$tmp25	 %read{51,51} %write{50,50}
 temp	float	$tmp26	 %read{52,52} %write{51,51}
@@ -69,48 +70,50 @@ temp	float	$tmp32	 %read{61,61} %write{60,60}
 temp	vector	$tmp33	 %read{62,62} %write{61,61}
 const	string	$const13	"specular"		 %read{67,67} %write{2147483647,-1}
 temp	int	$tmp34	 %read{68,68} %write{67,67}
-temp	closure color	$tmp35	 %read{71,71} %write{69,69}
+temp	closure color	$tmp35	 %read{72,72} %write{69,69}
 const	string	$const14	"reflection"		 %read{69,69} %write{2147483647,-1}
 temp	color	$tmp36	 %read{71,71} %write{70,70}
-temp	closure color	$tmp37	 %read{74,74} %write{71,71}
-temp	closure color	$tmp38	 %read{73,73} %write{72,72}
-const	string	$const15	"refraction"		 %read{72,72} %write{2147483647,-1}
+temp	color	$tmp37	 %read{72,72} %write{71,71}
+temp	closure color	$tmp38	 %read{75,75} %write{72,72}
 temp	closure color	$tmp39	 %read{74,74} %write{73,73}
-temp	closure color	$tmp40	 %read{76,76} %write{75,75}
-const	string	$const16	"microfacet"		 %read{75,77} %write{2147483647,-1}
-temp	closure color	$tmp41	 %read{79,79} %write{76,76}
-temp	closure color	$tmp42	 %read{78,78} %write{77,77}
+const	string	$const15	"refraction"		 %read{73,73} %write{2147483647,-1}
+temp	closure color	$tmp40	 %read{75,75} %write{74,74}
+temp	closure color	$tmp41	 %read{77,77} %write{76,76}
+const	string	$const16	"microfacet"		 %read{76,78} %write{2147483647,-1}
+temp	closure color	$tmp42	 %read{80,80} %write{77,77}
 temp	closure color	$tmp43	 %read{79,79} %write{78,78}
 temp	closure color	$tmp44	 %read{80,80} %write{79,79}
-code Nn
-# as_glass_surface.osl:30
-#     normal                  Nn = N,
-	assign		Nn N 	%filename{"as_glass_surface.osl"} %line{30} %argrw{"wr"}
-code T
-# as_glass_surface.osl:31
-#     vector                  T = dPdu,
-	assign		T dPdu 	%filename{"as_glass_surface.osl"} %line{31} %argrw{"wr"}
+temp	closure color	$tmp45	 %read{82,82} %write{80,80}
+temp	color	$tmp46	 %read{82,82} %write{81,81}
+code Normal
+# as_glass_surface.osl:37
+#     vector Normal = N,
+	assign		Normal N 	%filename{"as_glass_surface.osl"} %line{37} %argrw{"wr"}
+code Tangent
+# as_glass_surface.osl:38
+#     vector Tangent = dPdu,
+	assign		Tangent dPdu 	%filename{"as_glass_surface.osl"} %line{38} %argrw{"wr"}
 code ___main___
-# as_glass_surface.osl:39
-#     float eta = ior;
-	assign		eta ior 	%filename{"as_glass_surface.osl"} %line{39} %argrw{"wr"}
-# as_glass_surface.osl:41
+# as_glass_surface.osl:61
+#     float eta = Ior;
+	assign		eta Ior 	%filename{"as_glass_surface.osl"} %line{61} %argrw{"wr"}
+# as_glass_surface.osl:63
 #     if (!backfacing())
-	backfacing	$tmp1 	%line{41} %argrw{"w"}
+	backfacing	$tmp1 	%line{63} %argrw{"w"}
 	eq		$tmp2 $tmp1 $const1 	%argrw{"wrr"}
 	if		$tmp2 7 7 	%argrw{"r"}
-# as_glass_surface.osl:43
+# as_glass_surface.osl:65
 #         eta = 1.0 / eta;
-	div		eta $const2 eta 	%line{43} %argrw{"wrr"}
-# as_glass_surface.osl:47
-#     fresnel(I, Nn, eta, Kr, Kt);
-	functioncall	$const3 67 	%line{47} %argrw{"r"}
+	div		eta $const2 eta 	%line{65} %argrw{"wrr"}
+# as_glass_surface.osl:69
+#     fresnel(I, Normal, eta, Kr, Kt);
+	functioncall	$const3 67 	%line{69} %argrw{"r"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:239
-#         return distance(q, a);
+# point  mix (point  x, point  y, float  a) BUILTIN;
 	functioncall	$const3 67 	%filename{"/home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h"} %line{239} %argrw{"r"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:211
 #     float c = dot(I, N);
-	dot		___217_c I Nn 	%line{211} %argrw{"wrr"}
+	dot		___217_c I Normal 	%line{211} %argrw{"wrr"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:212
 #     if (c < 0)
 	lt		$tmp3 ___217_c $const1 	%line{212} %argrw{"wrr"}
@@ -123,9 +126,9 @@ code ___main___
 	functioncall	$const4 18 	%line{214} %argrw{"r"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:200
 # vector reflect (vector I, vector N) { return I - 2*dot(N,I)*N; }
-	dot		$tmp4 Nn I 	%line{200} %argrw{"wrr"}
+	dot		$tmp4 Normal I 	%line{200} %argrw{"wrr"}
 	mul		$tmp5 $const6 $tmp4 	%argrw{"wrr"}
-	mul		$tmp6 $tmp5 Nn 	%argrw{"wrr"}
+	mul		$tmp6 $tmp5 Normal 	%argrw{"wrr"}
 	sub		___221_R I $tmp6 	%argrw{"wrr"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:215
 #     float g = 1.0 / sqr(eta) - 1.0 + c * c;
@@ -191,7 +194,7 @@ code ___main___
 	functioncall	$const10 64 	%line{226} %argrw{"r"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:202
 #     float IdotN = dot (I, N);
-	dot		___216_IdotN I Nn 	%line{202} %argrw{"wrr"}
+	dot		___216_IdotN I Normal 	%line{202} %argrw{"wrr"}
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:203
 #     float k = 1 - eta*eta * (1 - IdotN*IdotN);
 	mul		$tmp24 eta eta 	%line{203} %argrw{"wrr"}
@@ -208,7 +211,7 @@ code ___main___
 	mul		$tmp30 eta ___216_IdotN 	%argrw{"wrr"}
 	sqrt		$tmp31 ___216_k 	%argrw{"wr"}
 	add		$tmp32 $tmp30 $tmp31 	%argrw{"wrr"}
-	mul		$tmp33 Nn $tmp32 	%argrw{"wrr"}
+	mul		$tmp33 Normal $tmp32 	%argrw{"wrr"}
 	sub		___221_T $tmp29 $tmp33 	%argrw{"wrr"}
 	return
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:229
@@ -220,26 +223,32 @@ code ___main___
 # /home/est/Devel/appleseedhq/appleseed/sandbox/shaders/stdosl.h:231
 #         T = vector (0,0,0);
 	assign		___221_T $const12 	%line{231} %argrw{"wr"}
-# as_glass_surface.osl:49
-#     if (distribution == "specular")
-	eq		$tmp34 distribution $const13 	%filename{"as_glass_surface.osl"} %line{49} %argrw{"wrr"}
-	if		$tmp34 75 81 	%argrw{"r"}
-# as_glass_surface.osl:50
-#         BRDF = col * Kr * reflection(Nn) + Kt * refraction(N, eta);
-	closure		$tmp35 $const14 Nn 	%line{50} %argrw{"wrr"}
-	mul		$tmp36 col Kr 	%argrw{"wrr"}
-	mul		$tmp37 $tmp35 $tmp36 	%argrw{"wrr"}
-	closure		$tmp38 $const15 N eta 	%argrw{"wrrr"}
-	mul		$tmp39 $tmp38 Kt 	%argrw{"wrr"}
-	add		BRDF $tmp37 $tmp39 	%argrw{"wrr"}
-# as_glass_surface.osl:54
-#             (Kr * microfacet(distribution, Nn, T, xroughness, yroughness, eta, 0) +
-	closure		$tmp40 $const16 distribution Nn T xroughness yroughness eta $const1 	%line{54} %argrw{"wrrrrrrrr"}
-	mul		$tmp41 $tmp40 Kr 	%argrw{"wrr"}
-# as_glass_surface.osl:55
-#              Kt * microfacet(distribution, Nn, T, xroughness, yroughness, eta, 1));
-	closure		$tmp42 $const16 distribution Nn T xroughness yroughness eta $const11 	%line{55} %argrw{"wrrrrrrrr"}
-	mul		$tmp43 $tmp42 Kt 	%argrw{"wrr"}
-	add		$tmp44 $tmp41 $tmp43 	%argrw{"wrr"}
-	mul		BRDF $tmp44 col 	%argrw{"wrr"}
+# as_glass_surface.osl:71
+#     if (Distribution == "specular")
+	eq		$tmp34 Distribution $const13 	%filename{"as_glass_surface.osl"} %line{71} %argrw{"wrr"}
+	if		$tmp34 76 83 	%argrw{"r"}
+# as_glass_surface.osl:72
+#         BRDF = Specular * Color * Kr * reflection(Normal) + Kt * refraction(N, eta);
+	closure		$tmp35 $const14 Normal 	%line{72} %argrw{"wrr"}
+	mul		$tmp36 Specular Color 	%argrw{"wrr"}
+	mul		$tmp37 $tmp36 Kr 	%argrw{"wrr"}
+	mul		$tmp38 $tmp35 $tmp37 	%argrw{"wrr"}
+	closure		$tmp39 $const15 N eta 	%argrw{"wrrr"}
+	mul		$tmp40 $tmp39 Kt 	%argrw{"wrr"}
+	add		BRDF $tmp38 $tmp40 	%argrw{"wrr"}
+# as_glass_surface.osl:76
+#             (Kr * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 0) +
+	closure		$tmp41 $const16 Distribution Normal Tangent RoughnessX RoughnessY eta $const1 	%line{76} %argrw{"wrrrrrrrr"}
+	mul		$tmp42 $tmp41 Kr 	%argrw{"wrr"}
+# as_glass_surface.osl:77
+#              Kt * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 1));
+	closure		$tmp43 $const16 Distribution Normal Tangent RoughnessX RoughnessY eta $const11 	%line{77} %argrw{"wrrrrrrrr"}
+	mul		$tmp44 $tmp43 Kt 	%argrw{"wrr"}
+	add		$tmp45 $tmp42 $tmp44 	%argrw{"wrr"}
+# as_glass_surface.osl:75
+#         BRDF = Specular * Color * 
+	mul		$tmp46 Specular Color 	%line{75} %argrw{"wrr"}
+# as_glass_surface.osl:77
+#              Kt * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 1));
+	mul		BRDF $tmp45 $tmp46 	%line{77} %argrw{"wrr"}
 	end

@@ -26,11 +26,13 @@
 // THE SOFTWARE.
 //
 
-shader as_globals(
-    output point     Point = P,
-    output normal    Normal = N,
-    output vector    Tangent = dPdu,
-    output float     U = u,
-    output float     V = v)
+shader as_globals
+(
+    output point Point = P,
+    output vector Normal = N,
+    output vector Tangent = dPdu,
+    output float U = u,
+    output float V = v
+)
 {
 }

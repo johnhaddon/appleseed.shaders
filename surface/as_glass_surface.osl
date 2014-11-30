@@ -26,17 +26,39 @@
 // THE SOFTWARE.
 //
 
-shader as_glass_surface(
-    normal                  Nn = N,
-    vector                  T = dPdu,
-    color					col = 1,
-    string					distribution = "specular",
-    float 					xroughness = 0.015,
-    float 					yroughness = 0.015,
-    float 					ior = 1.5,
-    output closure color	BRDF = 0)
+#include "appleseed/defaults.h"
+#include "appleseed/metadata.h"
+
+shader as_glass_surface
+[[
+    string help = "Glass surface shader"
+]]
+(
+    vector Normal = N,
+    vector Tangent = dPdu,
+    float Specular = 1
+    [[
+        string help = "Reflectivity",
+        APPLESEED_01_LIMIT_METADATA
+    ]],
+    color Color = 1,
+    string Distribution = APPLESEED_DEFAULT_MDF_DISTRIBUTION
+    [[ 
+        APPLESEED_MDF_DISTRIBUTION_METADATA
+    ]],
+
+    float RoughnessX = 0.015,
+    float RoughnessY = 0.015,
+
+    float  Ior = APPLESEED_DEFAULT_IOR
+    [[
+        APPLESEED_IOR_METADATA
+    ]],
+
+    output closure color BRDF = 0
+)
 {
-    float eta = ior;
+    float eta = Ior;
 
     if (!backfacing())
     {
@@ -44,14 +66,14 @@ shader as_glass_surface(
     }
 
     float Kr, Kt;
-    fresnel(I, Nn, eta, Kr, Kt);
+    fresnel(I, Normal, eta, Kr, Kt);
 
-    if (distribution == "specular")
-        BRDF = col * Kr * reflection(Nn) + Kt * refraction(N, eta);
+    if (Distribution == "specular")
+        BRDF = Specular * Color * Kr * reflection(Normal) + Kt * refraction(N, eta);
     else
     {
-        BRDF = col * 
-            (Kr * microfacet(distribution, Nn, T, xroughness, yroughness, eta, 0) +
-             Kt * microfacet(distribution, Nn, T, xroughness, yroughness, eta, 1));
+        BRDF = Specular * Color * 
+            (Kr * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 0) +
+             Kt * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 1));
     }
 }

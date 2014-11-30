@@ -1,33 +1,33 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 surface as_disney_material
-param	normal	Nn	0 0 0		 %read{2,2} %write{0,0}
-param	vector	T	0 0 0		 %read{2,2} %write{1,1}
-param	color	base_color	0.5 0.5 0.5		 %read{2,2} %write{2147483647,-1}
-param	float	subsurface	0		 %read{2,2} %write{2147483647,-1}
-param	float	metallic	0		 %read{2,2} %write{2147483647,-1}
-param	float	specular	0.5		 %read{2,2} %write{2147483647,-1}
-param	float	specular_tint	0		 %read{2,2} %write{2147483647,-1}
-param	float	anisotropic	0		 %read{2,2} %write{2147483647,-1}
-param	float	roughness	0.5		 %read{2,2} %write{2147483647,-1}
-param	float	sheen	0		 %read{2,2} %write{2147483647,-1}
-param	float	sheen_tint	0.5		 %read{2,2} %write{2147483647,-1}
-param	float	clearcoat	0		 %read{2,2} %write{2147483647,-1}
-param	float	clearcoat_gloss	1		 %read{2,2} %write{2147483647,-1}
+param	vector	Normal	0 0 0		 %read{2,2} %write{0,0}
+param	vector	Tangent	0 0 0		 %read{2,2} %write{1,1}
+param	color	BaseColor	0.5 0.5 0.5		 %read{2,2} %write{2147483647,-1}
+param	float	Subsurface	0		 %read{2,2} %write{2147483647,-1}
+param	float	Metallic	0		 %read{2,2} %write{2147483647,-1}
+param	float	Specular	0.5		 %read{2,2} %write{2147483647,-1}
+param	float	SpecularTint	0		 %read{2,2} %write{2147483647,-1}
+param	float	Anisotropic	0		 %read{2,2} %write{2147483647,-1}
+param	float	Roughness	0.5		 %read{2,2} %write{2147483647,-1}
+param	float	Sheen	0		 %read{2,2} %write{2147483647,-1}
+param	float	SheenTint	0.5		 %read{2,2} %write{2147483647,-1}
+param	float	Clearcoat	0		 %read{2,2} %write{2147483647,-1}
+param	float	ClearcoatGloss	1		 %read{2,2} %write{2147483647,-1}
 global	normal	N	 %read{0,0} %write{2147483647,-1}
 global	vector	dPdu	 %read{1,1} %write{2147483647,-1}
 global	closure color	Ci	 %read{2147483647,-1} %write{2,2}
 const	string	$const1	"as_disney"		 %read{2,2} %write{2147483647,-1}
-code Nn
-# as_disney_material.osl:30
-#     normal                 Nn = N,
-	assign		Nn N 	%filename{"as_disney_material.osl"} %line{30} %argrw{"wr"}
-code T
+code Normal
 # as_disney_material.osl:31
-#     vector                 T = dPdu,
-	assign		T dPdu 	%filename{"as_disney_material.osl"} %line{31} %argrw{"wr"}
+#     vector Normal = N,
+	assign		Normal N 	%filename{"as_disney_material.osl"} %line{31} %argrw{"wr"}
+code Tangent
+# as_disney_material.osl:32
+#     vector Tangent = dPdu,
+	assign		Tangent dPdu 	%filename{"as_disney_material.osl"} %line{32} %argrw{"wr"}
 code ___main___
-# as_disney_material.osl:57
-#         clearcoat_gloss);
-	closure		Ci $const1 Nn T base_color subsurface metallic specular specular_tint anisotropic roughness sheen sheen_tint clearcoat clearcoat_gloss 	%filename{"as_disney_material.osl"} %line{57} %argrw{"wrrrrrrrrrrrrrr"}
+# as_disney_material.osl:59
+#         ClearcoatGloss);
+	closure		Ci $const1 Normal Tangent BaseColor Subsurface Metallic Specular SpecularTint Anisotropic Roughness Sheen SheenTint Clearcoat ClearcoatGloss 	%filename{"as_disney_material.osl"} %line{59} %argrw{"wrrrrrrrrrrrrrr"}
 	end

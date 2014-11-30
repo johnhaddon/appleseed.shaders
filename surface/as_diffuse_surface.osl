@@ -26,12 +26,30 @@
 // THE SOFTWARE.
 //
 
-shader as_diffuse_surface(
-    normal                Normal = N,
-    float                 diffuse = 0.8,
-    color                 Color = 1.0,
-    float                 roughness = 0.0,
-    output closure color  BSDF = 0)
+#include "appleseed/metadata.h"
+
+shader as_diffuse_surface
+[[
+    string help = "Diffuse surface shader"
+]]
+(
+    vector Normal = N,
+    float Diffuse = 1.0
+    [[
+        string help = "Reflectivity",
+        APPLESEED_01_LIMIT_METADATA
+    ]],
+    color Color = 0.8
+    [[
+        string help = "Color"
+    ]],
+    float Roughness = 0.0
+    [[
+        string help = "Surface roughness."
+    ]],
+
+    output closure color BSDF = 0
+)
 {
-    BSDF = kd * col * oren_nayar(Nn, roughness);
+    BSDF = Diffuse * Color * oren_nayar(Normal, Roughness);
 }
