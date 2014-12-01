@@ -26,13 +26,20 @@
 // THE SOFTWARE.
 //
 
-surface as_material_builder
-[[
-    string help = "Builds a material from a surface shader"
-]]
+shader as_absorption
 (
-    closure color BSDF = 0
+    float Absorption = 1
+    [[
+        string help = "Absorption cross section",
+        float min = 0.0
+    ]],
+    output float FloatOut = 1
 )
 {
-    Ci = BSDF;
+    if(backfacing())
+    {
+        float length;
+        getattribute("path:ray_length", length);
+        FloatOut = exp(-Absorption * length);
+    }
 }

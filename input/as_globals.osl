@@ -30,9 +30,14 @@ shader as_globals
 (
     output point Point = P,
     output vector Normal = N,
+    output vector GeometricNormal = Ng,
     output vector Tangent = dPdu,
+    output vector Incident = I,
     output float U = u,
-    output float V = v
+    output float V = v,
+    output float Time = time,
+    output float Backfacing = 0
 )
 {
+    Backfacing = backfacing();
 }

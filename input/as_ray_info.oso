@@ -1,0 +1,23 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.6.2dev
+shader as_ray_info
+oparam	vector	Direction	0 0 0		 %read{2147483647,-1} %write{0,0}
+oparam	float	Length	0		 %read{2147483647,-1} %write{1,1}
+oparam	int	Depth	1		 %read{2147483647,-1} %write{2,2}
+global	vector	I	 %read{0,0} %write{2147483647,-1}
+temp	int	$tmp1	 %read{2147483647,-1} %write{1,1}
+const	string	$const1	"path:ray_length"		 %read{1,1} %write{2147483647,-1}
+temp	int	$tmp2	 %read{2147483647,-1} %write{2,2}
+const	string	$const2	"path:ray_depth"		 %read{2,2} %write{2147483647,-1}
+code Direction
+# as_ray_info.osl:31
+#     output vector Direction = I,
+	assign		Direction I 	%filename{"as_ray_info.osl"} %line{31} %argrw{"wr"}
+code ___main___
+# as_ray_info.osl:37
+#     getattribute("path:ray_length", Length);
+	getattribute	$tmp1 $const1 Length 	%filename{"as_ray_info.osl"} %line{37} %argrw{"wrw"}
+# as_ray_info.osl:38
+#     getattribute("path:ray_depth", Depth);
+	getattribute	$tmp2 $const2 Depth 	%line{38} %argrw{"wrw"}
+	end

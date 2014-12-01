@@ -26,13 +26,14 @@
 // THE SOFTWARE.
 //
 
-surface as_material_builder
-[[
-    string help = "Builds a material from a surface shader"
-]]
+shader as_ray_info
 (
-    closure color BSDF = 0
+    output vector Direction = I,
+    output float Length = 0.0,
+    output int Depth = 1
+
 )
 {
-    Ci = BSDF;
+    getattribute("path:ray_length", Length);
+    getattribute("path:ray_depth", Depth);
 }

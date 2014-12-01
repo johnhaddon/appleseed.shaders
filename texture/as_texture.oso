@@ -1,26 +1,39 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_texture
-param	string	Filename	""		 %read{2,2} %write{2147483647,-1}
+param	string	Filename	""		%meta{string,widget,"filename"}  %read{2,2} %write{2147483647,-1}
 param	float	U	0		 %read{2,2} %write{0,0} %derivs
 param	float	V	0		 %read{2,2} %write{1,1} %derivs
-param	string	SWrap	"periodic"		 %read{2,2} %write{2147483647,-1}
-param	string	TWrap	"periodic"		 %read{2,2} %write{2147483647,-1}
+param	string	UWrap	"default"		%meta{string,widget,"popup"} %meta{string,options,"default|black|periodic|clamp|mirror"}  %read{2,2} %write{2147483647,-1}
+param	string	VWrap	"default"		%meta{string,widget,"popup"} %meta{string,options,"default|black|periodic|clamp|mirror"}  %read{2,2} %write{2147483647,-1}
+param	string	Filter	"smartcubic"		%meta{string,widget,"popup"} %meta{string,options,"smartcubic|cubic|linear|closest"}  %read{2147483647,-1} %write{2147483647,-1}
+param	float	UWidth	1		 %read{2,2} %write{2147483647,-1}
+param	float	VWidth	1		 %read{2,2} %write{2147483647,-1}
+param	float	UBlur	0		 %read{2,2} %write{2147483647,-1}
+param	float	VBlur	0		 %read{2,2} %write{2147483647,-1}
+param	float	Fill	0		 %read{2,2} %write{2147483647,-1}
 oparam	color	ColorOut	0 0 0		 %read{2147483647,-1} %write{2,2}
+oparam	float	AlphaOut	1		 %read{2147483647,-1} %write{2,2}
 global	float	u	 %read{0,0} %write{2147483647,-1} %derivs
 global	float	v	 %read{1,1} %write{2147483647,-1} %derivs
-const	string	$const1	"swrap"		 %read{2,2} %write{2147483647,-1}
-const	string	$const2	"twrap"		 %read{2,2} %write{2147483647,-1}
+const	string	$const1	"swidth"		 %read{2,2} %write{2147483647,-1}
+const	string	$const2	"twidth"		 %read{2,2} %write{2147483647,-1}
+const	string	$const3	"sblur"		 %read{2,2} %write{2147483647,-1}
+const	string	$const4	"tblur"		 %read{2,2} %write{2147483647,-1}
+const	string	$const5	"swrap"		 %read{2,2} %write{2147483647,-1}
+const	string	$const6	"twrap"		 %read{2,2} %write{2147483647,-1}
+const	string	$const7	"fill"		 %read{2,2} %write{2147483647,-1}
+const	string	$const8	"alpha"		 %read{2,2} %write{2147483647,-1}
 code U
-# as_texture.osl:33
+# as_texture.osl:36
 #     float U = u,
-	assign		U u 	%filename{"as_texture.osl"} %line{33} %argrw{"wr"}
+	assign		U u 	%filename{"as_texture.osl"} %line{36} %argrw{"wr"}
 code V
-# as_texture.osl:34
+# as_texture.osl:37
 #     float V = v,
-	assign		V v 	%filename{"as_texture.osl"} %line{34} %argrw{"wr"}
+	assign		V v 	%filename{"as_texture.osl"} %line{37} %argrw{"wr"}
 code ___main___
-# as_texture.osl:40
-#     ColorOut = texture(Filename, U, V, "swrap", SWrap, "twrap", TWrap);
-	texture		ColorOut Filename U V $const1 SWrap $const2 TWrap 	%filename{"as_texture.osl"} %line{40} %argrw{"wrrrrrrr"} %argderivs{2,3}
+# as_texture.osl:62
+#     ColorOut = texture(Filename, U, V, "swidth", UWidth, "twidth",  VWidth, "sblur", UBlur, "tblur", VBlur, "swrap", UWrap, "twrap", VWrap, "fill", Fill, "alpha", AlphaOut);
+	texture		ColorOut Filename U V $const1 UWidth $const2 VWidth $const3 UBlur $const4 VBlur $const5 UWrap $const6 VWrap $const7 Fill $const8 AlphaOut 	%filename{"as_texture.osl"} %line{62} %argrw{"wrrrrrrrrrrrrrrrrrrw"} %argderivs{2,3}
 	end

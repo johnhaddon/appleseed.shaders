@@ -27,6 +27,9 @@
 //
 
 surface as_disney_material
+[[
+    string help = "Material based on the Disney BRDF"
+]]
 (
     vector Normal = N,
     vector Tangent = dPdu,

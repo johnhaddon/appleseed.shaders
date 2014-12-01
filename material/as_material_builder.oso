@@ -4,7 +4,7 @@ surface as_material_builder
 param	closure color	BSDF			 %read{0,0} %write{2147483647,-1}
 global	closure color	Ci	 %read{2147483647,-1} %write{0,0}
 code ___main___
-# as_material_builder.osl:34
+# as_material_builder.osl:37
 #     Ci = BSDF;
-	assign		Ci BSDF 	%filename{"as_material_builder.osl"} %line{34} %argrw{"wr"}
+	assign		Ci BSDF 	%filename{"as_material_builder.osl"} %line{37} %argrw{"wr"}
 	end

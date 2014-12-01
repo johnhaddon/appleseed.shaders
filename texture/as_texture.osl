@@ -29,13 +29,35 @@
 
 shader as_texture
 (
-    string Filename = "",
+    string Filename = ""
+    [[
+        string widget = "filename"
+    ]],
     float U = u,
     float V = v,
-    string SWrap = "periodic",
-    string TWrap = "periodic",
-    output color ColorOut = 0
+    string UWrap = "default"
+    [[
+        string widget = "popup",
+        string options = "default|black|periodic|clamp|mirror"
+    ]],
+    string VWrap = "default"
+    [[
+        string widget = "popup",
+        string options = "default|black|periodic|clamp|mirror"
+    ]],
+    string Filter = "smartcubic"
+    [[
+        string widget = "popup",
+        string options = "smartcubic|cubic|linear|closest"
+    ]],
+    float UWidth = 1.0,
+    float VWidth = 1.0,
+    float UBlur = 0.0,
+    float VBlur = 0.0,
+    float Fill = 0.0,
+    output color ColorOut = 0,
+    output float AlphaOut = 1.0
 )
 {
-    ColorOut = texture(Filename, U, V, "swrap", SWrap, "twrap", TWrap);
+    ColorOut = texture(Filename, U, V, "swidth", UWidth, "twidth",  VWidth, "sblur", UBlur, "tblur", VBlur, "swrap", UWrap, "twrap", VWrap, "fill", Fill, "alpha", AlphaOut);
 }
