@@ -48,8 +48,8 @@ shader as_diffuse_surface
         string help = "Surface roughness."
     ]],
 
-    output closure color BSDF = 0
+    output closure color BRDF = 0
 )
 {
-    BSDF = Diffuse * Color * oren_nayar(Normal, Roughness);
+    BRDF = Diffuse * Color * oren_nayar(Normal, Roughness);
 }

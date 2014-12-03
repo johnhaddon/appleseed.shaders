@@ -1,24 +1,24 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_globals
-oparam	point	Point	0 0 0		 %read{2147483647,-1} %write{0,0}
-oparam	vector	Normal	0 0 0		 %read{2147483647,-1} %write{1,1}
-oparam	vector	GeometricNormal	0 0 0		 %read{2147483647,-1} %write{2,2}
-oparam	vector	Tangent	0 0 0		 %read{2147483647,-1} %write{3,3}
-oparam	vector	Incident	0 0 0		 %read{2147483647,-1} %write{4,4}
-oparam	float	U	0		 %read{2147483647,-1} %write{5,5}
-oparam	float	V	0		 %read{2147483647,-1} %write{6,6}
-oparam	float	Time	0		 %read{2147483647,-1} %write{7,7}
-oparam	float	Backfacing	0		 %read{2147483647,-1} %write{9,9}
-global	point	P	 %read{0,0} %write{2147483647,-1}
-global	vector	I	 %read{4,4} %write{2147483647,-1}
-global	normal	N	 %read{1,1} %write{2147483647,-1}
-global	normal	Ng	 %read{2,2} %write{2147483647,-1}
-global	float	u	 %read{5,5} %write{2147483647,-1}
-global	float	v	 %read{6,6} %write{2147483647,-1}
-global	vector	dPdu	 %read{3,3} %write{2147483647,-1}
-global	float	time	 %read{7,7} %write{2147483647,-1}
-temp	int	$tmp1	 %read{9,9} %write{8,8}
+oparam	point	Point	0 0 0		%read{2147483647,-1} %write{0,0} %initexpr
+oparam	vector	Normal	0 0 0		%read{2147483647,-1} %write{1,1} %initexpr
+oparam	vector	GeometricNormal	0 0 0		%read{2147483647,-1} %write{2,2} %initexpr
+oparam	vector	Tangent	0 0 0		%read{2147483647,-1} %write{3,3} %initexpr
+oparam	vector	Incident	0 0 0		%read{2147483647,-1} %write{4,4} %initexpr
+oparam	float	U	0		%read{2147483647,-1} %write{5,5} %initexpr
+oparam	float	V	0		%read{2147483647,-1} %write{6,6} %initexpr
+oparam	float	Time	0		%read{2147483647,-1} %write{7,7} %initexpr
+oparam	float	Backfacing	0		%read{2147483647,-1} %write{9,9}
+global	point	P	%read{0,0} %write{2147483647,-1}
+global	vector	I	%read{4,4} %write{2147483647,-1}
+global	normal	N	%read{1,1} %write{2147483647,-1}
+global	normal	Ng	%read{2,2} %write{2147483647,-1}
+global	float	u	%read{5,5} %write{2147483647,-1}
+global	float	v	%read{6,6} %write{2147483647,-1}
+global	vector	dPdu	%read{3,3} %write{2147483647,-1}
+global	float	time	%read{7,7} %write{2147483647,-1}
+temp	int	$tmp1	%read{9,9} %write{8,8}
 code Point
 # as_globals.osl:31
 #     output point Point = P,

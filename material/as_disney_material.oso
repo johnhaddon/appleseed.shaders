@@ -1,23 +1,23 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 surface as_disney_material
-param	vector	Normal	0 0 0		 %read{2,2} %write{0,0}
-param	vector	Tangent	0 0 0		 %read{2,2} %write{1,1}
-param	color	BaseColor	0.5 0.5 0.5		 %read{2,2} %write{2147483647,-1}
-param	float	Subsurface	0		 %read{2,2} %write{2147483647,-1}
-param	float	Metallic	0		 %read{2,2} %write{2147483647,-1}
-param	float	Specular	0.5		 %read{2,2} %write{2147483647,-1}
-param	float	SpecularTint	0		 %read{2,2} %write{2147483647,-1}
-param	float	Anisotropic	0		 %read{2,2} %write{2147483647,-1}
-param	float	Roughness	0.5		 %read{2,2} %write{2147483647,-1}
-param	float	Sheen	0		 %read{2,2} %write{2147483647,-1}
-param	float	SheenTint	0.5		 %read{2,2} %write{2147483647,-1}
-param	float	Clearcoat	0		 %read{2,2} %write{2147483647,-1}
-param	float	ClearcoatGloss	1		 %read{2,2} %write{2147483647,-1}
-global	normal	N	 %read{0,0} %write{2147483647,-1}
-global	vector	dPdu	 %read{1,1} %write{2147483647,-1}
-global	closure color	Ci	 %read{2147483647,-1} %write{2,2}
-const	string	$const1	"as_disney"		 %read{2,2} %write{2147483647,-1}
+param	vector	Normal	0 0 0		%read{2,2} %write{0,0} %initexpr
+param	vector	Tangent	0 0 0		%read{2,2} %write{1,1} %initexpr
+param	color	BaseColor	0.5 0.5 0.5		%read{2,2} %write{2147483647,-1}
+param	float	Subsurface	0		%read{2,2} %write{2147483647,-1}
+param	float	Metallic	0		%read{2,2} %write{2147483647,-1}
+param	float	Specular	0.5		%read{2,2} %write{2147483647,-1}
+param	float	SpecularTint	0		%read{2,2} %write{2147483647,-1}
+param	float	Anisotropic	0		%read{2,2} %write{2147483647,-1}
+param	float	Roughness	0.5		%read{2,2} %write{2147483647,-1}
+param	float	Sheen	0		%read{2,2} %write{2147483647,-1}
+param	float	SheenTint	0.5		%read{2,2} %write{2147483647,-1}
+param	float	Clearcoat	0		%read{2,2} %write{2147483647,-1}
+param	float	ClearcoatGloss	1		%read{2,2} %write{2147483647,-1}
+global	normal	N	%read{0,0} %write{2147483647,-1}
+global	vector	dPdu	%read{1,1} %write{2147483647,-1}
+global	closure color	Ci	%read{2147483647,-1} %write{2,2}
+const	string	$const1	"as_disney"		%read{2,2} %write{2147483647,-1}
 code Normal
 # as_disney_material.osl:34
 #     vector Normal = N,

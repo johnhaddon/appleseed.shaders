@@ -31,8 +31,8 @@ shader as_translucent_surface
     vector Normal = N,
     float Diffuse = 1.0,
     color Color = 0.8,
-    output closure color BSDF = 0
+    output closure color BTDF = 0
 )
 {
-    BSDF = Diffuse * Color * translucent(Normal);
+    BTDF = Diffuse * Color * translucent(Normal);
 }

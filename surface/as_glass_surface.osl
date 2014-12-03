@@ -55,7 +55,7 @@ shader as_glass_surface
         APPLESEED_IOR_METADATA
     ]],
 
-    output closure color BRDF = 0
+    output closure color BSDF = 0
 )
 {
     float eta = Ior;
@@ -69,10 +69,10 @@ shader as_glass_surface
     fresnel(I, Normal, eta, Kr, Kt);
 
     if (Distribution == "specular")
-        BRDF = Specular * Color * Kr * reflection(Normal) + Kt * refraction(N, eta);
+        BSDF = Specular * Color * Kr * reflection(Normal) + Kt * refraction(N, eta);
     else
     {
-        BRDF = Specular * Color * 
+        BSDF = Specular * Color * 
             (Kr * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 0) +
              Kt * microfacet(Distribution, Normal, Tangent, RoughnessX, RoughnessY, eta, 1));
     }

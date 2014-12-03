@@ -1,26 +1,26 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_ray_type
-oparam	int	IsCamera	0		 %read{2147483647,-1} %write{0,0}
-oparam	int	IsLight	0		 %read{2147483647,-1} %write{1,1}
-oparam	int	IsShadow	0		 %read{4,4} %write{2,2}
-oparam	int	IsTransparency	0		 %read{6,6} %write{3,3}
-oparam	int	IsShadow_or_transp	0		 %read{2147483647,-1} %write{8,8}
-oparam	int	IsProbe	0		 %read{2147483647,-1} %write{9,9}
-oparam	int	IsDiffuse	0		 %read{2147483647,-1} %write{10,10}
-oparam	int	IsSpecular	0		 %read{2147483647,-1} %write{11,11}
-oparam	int	IsGlossy	0		 %read{2147483647,-1} %write{12,12}
-const	string	$const1	"camera"		 %read{0,0} %write{2147483647,-1}
-const	string	$const2	"light"		 %read{1,1} %write{2147483647,-1}
-const	string	$const3	"shadow"		 %read{2,2} %write{2147483647,-1}
-const	string	$const4	"transparency"		 %read{3,3} %write{2147483647,-1}
-temp	int	$tmp1	 %read{5,8} %write{4,7}
-const	int	$const5	0		 %read{4,6} %write{2147483647,-1}
-temp	int	$tmp2	 %read{7,7} %write{6,6}
-const	string	$const6	"probe"		 %read{9,9} %write{2147483647,-1}
-const	string	$const7	"diffuse"		 %read{10,10} %write{2147483647,-1}
-const	string	$const8	"specular"		 %read{11,11} %write{2147483647,-1}
-const	string	$const9	"glossy"		 %read{12,12} %write{2147483647,-1}
+oparam	int	IsCamera	0		%read{2147483647,-1} %write{0,0} %initexpr
+oparam	int	IsLight	0		%read{2147483647,-1} %write{1,1} %initexpr
+oparam	int	IsShadow	0		%read{4,4} %write{2,2} %initexpr
+oparam	int	IsTransparency	0		%read{6,6} %write{3,3} %initexpr
+oparam	int	IsShadow_or_transp	0		%read{2147483647,-1} %write{8,8} %initexpr
+oparam	int	IsProbe	0		%read{2147483647,-1} %write{9,9} %initexpr
+oparam	int	IsDiffuse	0		%read{2147483647,-1} %write{10,10} %initexpr
+oparam	int	IsSpecular	0		%read{2147483647,-1} %write{11,11} %initexpr
+oparam	int	IsGlossy	0		%read{2147483647,-1} %write{12,12} %initexpr
+const	string	$const1	"camera"		%read{0,0} %write{2147483647,-1}
+const	string	$const2	"light"		%read{1,1} %write{2147483647,-1}
+const	string	$const3	"shadow"		%read{2,2} %write{2147483647,-1}
+const	string	$const4	"transparency"		%read{3,3} %write{2147483647,-1}
+temp	int	$tmp1	%read{5,8} %write{4,7}
+const	int	$const5	0		%read{4,6} %write{2147483647,-1}
+temp	int	$tmp2	%read{7,7} %write{6,6}
+const	string	$const6	"probe"		%read{9,9} %write{2147483647,-1}
+const	string	$const7	"diffuse"		%read{10,10} %write{2147483647,-1}
+const	string	$const8	"specular"		%read{11,11} %write{2147483647,-1}
+const	string	$const9	"glossy"		%read{12,12} %write{2147483647,-1}
 code IsCamera
 # as_ray_type.osl:31
 #     output int IsCamera = raytype("camera"),

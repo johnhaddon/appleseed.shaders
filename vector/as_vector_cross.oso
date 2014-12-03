@@ -1,9 +1,9 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.6.2dev
 shader as_vector_cross
-param	vector	Vector1	0 0 0		 %read{0,0} %write{2147483647,-1}
-param	vector	Vector2	0 0 0		 %read{0,0} %write{2147483647,-1}
-oparam	vector	VectorOut	0 0 0		 %read{2147483647,-1} %write{0,0}
+param	vector	Vector1	0 0 0		%read{0,0} %write{2147483647,-1}
+param	vector	Vector2	0 0 0		%read{0,0} %write{2147483647,-1}
+oparam	vector	VectorOut	0 0 0		%read{2147483647,-1} %write{0,0}
 code ___main___
 # as_vector_cross.osl:36
 #     VectorOut = cross(Vector1, Vector2);
